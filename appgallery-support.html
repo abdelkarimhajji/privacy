@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Support Center - AppGallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6d00;
+            --primary-dark: #e65100;
+            --dark-bg: #000000;
+            --card-bg: #1a1a1a;
+            --text-white: #ffffff;
+            --text-grey: #aaaaaa;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.8);
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-white);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .appgallery-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ff6d00 0%, #ff9100 100%);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .appgallery-badge i {
+            font-size: 18px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--text-grey);
+            font-size: 1.2rem;
+        }
+
+        .hero .store-info {
+            margin-top: 20px;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+
+        .contact-card i {
+            font-size: 50px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 109, 0, 0.15);
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #111;
+            margin: 5% auto;
+            padding: 40px;
+            border: 1px solid var(--primary-color);
+            width: 80%;
+            max-width: 800px;
+            border-radius: 20px;
+            color: var(--text-white);
+            text-align: left;
+        }
+
+        .close-btn {
+            color: var(--text-grey);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .policy-text h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: var(--text-grey);
+            font-size: 14px;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Hajji<span>Apps</span></div>
+        <div class="appgallery-badge">
+            <i class="fas fa-mobile-alt"></i>
+            Available on AppGallery
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1><span id="appNameTitle">App</span> Support</h1>
+            <p>Official support center for apps by Abdelkarim Hajji</p>
+            <p class="store-info"><i class="fas fa-store"></i> Distributed via Huawei AppGallery</p>
+        </section>
+
+        <section class="contact-container">
+            <div class="contact-card">
+                <i class="fas fa-envelope-open-text"></i>
+                <h2>Email Support</h2>
+                <p>For technical issues, bug reports, or account inquiries.</p>
+                <a href="mailto:abdelkarim.hujji@gmail.com" class="btn">Contact Us</a>
+            </div>
+
+            <div class="contact-card">
+                <i class="fas fa-shield-alt"></i>
+                <h2>Privacy Policy</h2>
+                <p>Read how we handle your data securely and transparently.</p>
+                <button class="btn secondary" onclick="openModal()">View Policy</button>
+            </div>
+
+            <div class="contact-card">
+                <i class="fas fa-download"></i>
+                <h2>Get the App</h2>
+                <p>Download from Huawei AppGallery on your Huawei or Honor device.</p>
+                <a href="https://appgallery.huawei.com/" target="_blank" rel="noopener" class="btn secondary">Visit AppGallery</a>
+            </div>
+        </section>
+    </main>
+
+    <div id="policyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="policy-text">
+                <h1>Privacy Policy for <span id="appNamePolicy">Our Apps</span></h1>
+                <p><strong>Last Updated:</strong> January 2026</p>
+                <p>This Privacy Policy applies to the mobile application <strong><span id="appNameBody">our app</span></strong>, developed by Abdelkarim Hajji and distributed through <strong>Huawei AppGallery</strong>.</p>
+                
+                <h3>1. Information We Collect</h3>
+                <p>We believe in privacy first. Our applications collect the minimum amount of data required for functionality:</p>
+                <ul>
+                    <li><strong>For Games:</strong> We may store local game progress and scores on your device.</li>
+                    <li><strong>For Network Utilities:</strong> We do NOT log your browsing history, traffic destination, or data content. We only process the technical connection data required to establish the secure tunnel.</li>
+                    <li><strong>For General Tools:</strong> We store your user preferences locally on your device to improve your experience.</li>
+                </ul>
+
+                <h3>2. Third-Party Services (Huawei Mobile Services)</h3>
+                <p>As this app is distributed via AppGallery, we may use Huawei Mobile Services (HMS) to improve your experience:</p>
+                <ul>
+                    <li><strong>Huawei Ads (PPS):</strong> For displaying advertisements on devices without Google services.</li>
+                    <li><strong>Huawei Analytics:</strong> For understanding app usage and improving the product.</li>
+                    <li><strong>Huawei Crash Service:</strong> For crash reporting to help us fix bugs and ensure stability.</li>
+                </ul>
+                <p>Huawei's services comply with applicable privacy regulations. You can manage your preferences in your device and Huawei account settings.</p>
+
+                <h3>3. AppGallery & Huawei Account</h3>
+                <p>When you download this app from AppGallery, Huawei may collect certain data related to the download and update process. This is governed by Huawei's own privacy policy. Our app does not access your Huawei account credentials.</p>
+
+                <h3>4. Data Security</h3>
+                <p>We implement industry-standard security measures. For our network tools, we use strong encryption to ensure your connection remains private and secure. Data is processed in accordance with applicable data protection laws.</p>
+
+                <h3>5. Contact Us</h3>
+                <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+                <p><strong>Email:</strong> abdelkarim.hujji@gmail.com</p>
+                
+                <br>
+                <button class="btn" onclick="closeModal()">I Understand</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Abdelkarim Hajji. All rights reserved.</p>
+        <p>App available on Huawei AppGallery</p>
+    </footer>
+
+    <script>
+        // --- DYNAMIC APP NAME SCRIPT ---
+        // This script looks at the URL for "?app=Name" and updates the page text automatically.
+        
+        function getAppName() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const app = urlParams.get('app');
+            return app ? app : "Our Applications";
+        }
+
+        const appName = getAppName();
+
+        // Update the text in the Title, Hero, and Policy
+        document.getElementById('appNameTitle').innerText = appName;
+        document.getElementById('appNamePolicy').innerText = appName;
+        document.getElementById('appNameBody').innerText = appName;
+        document.title = appName + " Support | Hajji Apps | AppGallery";
+
+        // Modal Logic
+        function openModal() {
+            document.getElementById("policyModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("policyModal").style.display = "none";
+        }
+
+        // Close modal if user clicks outside of the box
+        window.onclick = function(event) {
+            let modal = document.getElementById("policyModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
